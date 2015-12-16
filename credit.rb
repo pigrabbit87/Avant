@@ -1,12 +1,17 @@
 require 'date'
 
 class Credit
+	attr_accessor :APR, :balance
 	def initialize(credit_limit, rate)
-		@credit_limit = credit_limit
-		@APR = rate
-		@balance = credit_limit
-		@started_date = Date.today
-		@transactions = []
+		if (credit_limit < 0 or rate > 1) 
+			raise "Invalid Credit limit or Rate"
+		else
+			@credit_limit = credit_limit
+			@APR = rate
+			@balance = credit_limit
+			@started_date = Date.today
+			@transactions = []
+		end
 	end
 
 	def withdraw(amount)
